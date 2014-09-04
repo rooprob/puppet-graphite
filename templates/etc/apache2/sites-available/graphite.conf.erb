@@ -4,20 +4,21 @@
 # you will need to change all the occurances of /opt/graphite/
 # in this file to your chosen install location.
 
-<IfModule !wsgi_module.c>
-  <%- if @osfamily == "Debian" -%>
-    LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so
-  <%- end -%>
-  <%- if @osfamily == "RedHat" -%>
-    LoadModule wsgi_module modules/mod_wsgi.so
-  <%- end -%>
-</IfModule>
-
-# XXX You need to set this up!
-# Read http://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGISocketPrefix
-WSGISocketPrefix <%= scope.lookupvar('graphite::params::apache_wsgi_socket_prefix') %>
-
-<VirtualHost *:<%= scope.lookupvar('graphite::gr_apache_port') %>>
+#<IfModule !wsgi_module.c>
+#  <%- if @osfamily == "Debian" -%>
+#    LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so
+#  <%- end -%>
+#  <%- if @osfamily == "RedHat" -%>
+#    LoadModule wsgi_module modules/mod_wsgi.so
+#  <%- end -%>
+#</IfModule>
+#
+## XXX You need to set this up!
+## Read http://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGISocketPrefix
+#WSGISocketPrefix <%= scope.lookupvar('graphite::params::apache_wsgi_socket_prefix') %>
+#
+#<VirtualHost *:<%= scope.lookupvar('graphite::gr_apache_port') %>>
+#
 	ServerName <%= scope.lookupvar('graphite::gr_web_servername') %>
 	DocumentRoot "/opt/graphite/webapp"
 
@@ -71,11 +72,11 @@ WSGISocketPrefix <%= scope.lookupvar('graphite::params::apache_wsgi_socket_prefi
 			Allow from all
 <% end %>
 	</Directory>
-	
+
 <% if scope.lookupvar('graphite::gr_web_cors_allow_from_all') %>
 	Header set Access-Control-Allow-Origin "*"
 	Header set Access-Control-Allow-Methods "GET, OPTIONS, POST"
 	Header set Access-Control-Allow-Headers "origin, authorization, accept"
 <% end %>
 
-</VirtualHost>
+# </VirtualHost>
