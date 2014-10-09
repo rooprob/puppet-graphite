@@ -60,6 +60,7 @@ class graphite::config inherits graphite::params {
     cwd         => '/opt/graphite/',
     refreshonly => true,
     require     => $web_server_package_require,
+    notify      => Service['carbon-cache'],
   }
 
   # change access permissions for carbon-cache to align with gr_user

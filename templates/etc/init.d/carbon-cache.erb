@@ -14,13 +14,13 @@
 
 case "$1" in
 	start)
-		python /opt/graphite/bin/carbon-cache.py start
+		su - <%= @gr_user %> -s /bin/sh -c 'python /opt/graphite/bin/carbon-cache.py start'
 		;;
 	stop)
-		python /opt/graphite/bin/carbon-cache.py stop
+		su - <%= @gr_user %> -s /bin/sh -c 'python /opt/graphite/bin/carbon-cache.py stop'
 		;;
 	status)
-		python /opt/graphite/bin/carbon-cache.py status
+		su - <%= @gr_user %> -s /bin/sh -c 'python /opt/graphite/bin/carbon-cache.py status'
 		;;
 	restart)
 		$0 stop ; sleep 3 ; $0 start

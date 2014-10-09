@@ -101,7 +101,7 @@ class graphite::config_apache inherits graphite::params {
 #      ];
 #  }
 
-   apache::vhost { 'graphite.local':
+   apache::vhost { $graphite::gr_vhost_name:
       priority => 10,
       port => 80,
       docroot => '/opt/graphite',

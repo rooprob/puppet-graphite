@@ -28,7 +28,6 @@ class graphite::params {
   $enable_carbon_relay = false
   $nginxconf_dir = '/etc/nginx/sites-available'
 
-
   case $::osfamily {
     'debian': {
       $apache_pkg = 'apache2'
